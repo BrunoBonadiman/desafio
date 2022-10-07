@@ -1,0 +1,148 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid mt-3">
+  <div class="card">
+    <div class="card-body">
+      <div class="kt-portlet">
+        <div class="kt-portlet__head">
+          <div class="kt-portlet__head-title">
+            <h4 class="kt-portlet__head-title">Resultados</h4>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col">
+          <button type="button" class="btn btn-outline-success">
+            Exportar Excel
+          </button>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table table-hover" [id]="'table-lancamento-contas-legado'">
+              <thead>
+                <tr>
+                  <th scope="col" (click)="sort('id')">
+                    Id &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('merchantId')">
+                    Id Estabelecimento &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('paymentNode')">
+                    Id Pagamento &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('cnpjRoot')">
+                    CNPJ &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('date')">
+                    Data &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('paymentType')">
+                    Tipo Pagamento &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('cardBrand')">
+                    Bandeira &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('authorizationCode')">
+                    Cód. Autorização &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('truncatedCardNumber')">
+                    4 últ. díg. cartão &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('grossAmount')">
+                    Valor Bruto &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('netAmount')">
+                    Valor Líquido &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('terminal')">
+                    Terminal &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('administrationFee')">
+                    Taxa de Administração &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('channelCode')">
+                    Cód. Canal &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('channel')">
+                    Canal &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('withdrawAmount')">
+                    Retirar Montante &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('minimumMDRAmmount')">
+                    Qtd. mínima MDR &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('mdrTaxAmount')">
+                    Val. Imposto MDR &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('mdrFeeAmount')">
+                    Val. Taxa MDR &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                  <th scope="col" (click)="sort('status')">
+                    Status &nbsp;<i class="fa fa-sort"></i>
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                *ngFor="
+                  let res of response.items
+                    | orderBy: key:reverse
+                    | paginate: { itemsPerPage: 10, currentPage: p }
+                "
+              >
+                <tr>
+                  <td class="text-center">{{ res.id }}</td>
+                  <td class="text-center">{{ res.merchantId }}</td>
+                  <td class="text-center">{{ res.paymentNode }}</td>
+                  <td class="text-center">{{ res.cnpjRoot }}</td>
+                  <td class="text-center">
+                    {{ res.date | date: "dd/MM/yyyy HH:mm:ss" }}
+                  </td>
+                  <td class="text-center">{{ res.paymentType }}</td>
+                  <td class="text-center">{{ res.cardBrand }}</td>
+                  <td class="text-center">{{ res.authorizationCode }}</td>
+                  <td class="text-center">{{ res.truncatedCardNumber }}</td>
+                  <td class="text-center">
+                    {{ res.grossAmount | currency: "BRL" }}
+                  </td>
+                  <td class="text-center">
+                    {{ res.netAmount | currency: "BRL" }}
+                  </td>
+                  <td class="text-center">{{ res.terminal }}</td>
+                  <td class="text-center">{{ res.administrationFee }}</td>
+                  <td class="text-center">{{ res.channelCode }}</td>
+                  <td class="text-center">{{ res.channel }}</td>
+                  <td class="text-center">{{ res.withdrawAmount }}</td>
+                  <td class="text-center">{{ res.minimumMDRAmmount }}</td>
+                  <td class="text-center">{{ res.mdrTaxAmount }}</td>
+                  <td class="text-center">{{ res.mdrFeeAmount }}</td>
+                  <td>
+                    <span
+                      class="text-white badge {{
+                        res.status == 'Não Autorizada'
+                          ? 'bg-danger'
+                          : 'bg-success'
+                      }}"
+                      >{{ res.status }}</span
+                    >
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot class="text-center">
+                <tr>
+                  <td colspan="20">
+                    <pagination-controls
+                      (pageChange)="p = $event"
+                    ></pagination-controls>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

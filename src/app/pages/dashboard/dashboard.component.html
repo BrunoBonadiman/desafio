@@ -1,26 +1,118 @@
-<app-navbar></app-navbar>
+<div id="content-wrapper" class="d-flex flex-column">
+  <div id="content">
+    <app-navbar></app-navbar>
 
-<div class="container-fluid mt-3">
-  <div class="card">
-    <div class="card-body">
-      <div class="kt-portlet">
-        <div class="kt-portlet__head">
-          <div class="kt-portlet__head-title">
-            <h4 class="kt-portlet__head-title">Resultados</h4>
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                  >
+                    Valor Total
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ response.summary.totalAmount | currency: "BRL" }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-success text-uppercase mb-1"
+                  >
+                    Valor Líquido Total
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ response.summary.totalNetAmount | currency: "BRL" }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-info text-uppercase mb-1"
+                  >
+                    Valor Médio Total
+                  </div>
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                    {{ response.summary.totalAverageAmount | currency: "BRL" }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-secondary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-dark text-uppercase mb-1"
+                  >
+                    Quantidade Total de Registros
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ response.summary.totalQuantity }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-bars fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col">
-          <button type="button" class="btn btn-outline-success">
-            Exportar Excel
-          </button>
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h5 class="m-0 font-weight-bold text-primary">Resultados</h5><small>Período: {{ response.summary.initialDate | date: "dd/MM/yyyy"  }} - {{ response.summary.finalDate | date: "dd/MM/yyyy"  }}</small>
         </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-12">
+        <div class="row mt-4 ml-1">
+          <div class="col">
+            <button
+              [id]="'btn-exportar-excel'"
+              type="button"
+              class="btn btn-success"
+              (click)="exportexcel()"
+            >
+              Exportar Excel
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-hover" [id]="'table-lancamento-contas-legado'">
+            <table
+              class="table table-hover"
+              width="100%"
+              cellspacing="0"
+              [id]="'table-lancamento-contas-legado'"
+            >
               <thead>
                 <tr>
                   <th scope="col" (click)="sort('id')">
@@ -35,7 +127,7 @@
                   <th scope="col" (click)="sort('cnpjRoot')">
                     CNPJ &nbsp;<i class="fa fa-sort"></i>
                   </th>
-                  <th scope="col" (click)="sort('date')">
+                  <th scope="col" (click)="sort('date')" width="250">
                     Data &nbsp;<i class="fa fa-sort"></i>
                   </th>
                   <th scope="col" (click)="sort('paymentType')">
@@ -47,7 +139,11 @@
                   <th scope="col" (click)="sort('authorizationCode')">
                     Cód. Autorização &nbsp;<i class="fa fa-sort"></i>
                   </th>
-                  <th scope="col" (click)="sort('truncatedCardNumber')">
+                  <th
+                    scope="col"
+                    (click)="sort('truncatedCardNumber')"
+                    width="250"
+                  >
                     4 últ. díg. cartão &nbsp;<i class="fa fa-sort"></i>
                   </th>
                   <th scope="col" (click)="sort('grossAmount')">
@@ -89,7 +185,7 @@
                 *ngFor="
                   let res of response.items
                     | orderBy: key:reverse
-                    | paginate: { itemsPerPage: 10, currentPage: p }
+                    | paginate: { itemsPerPage: 50, currentPage: p }
                 "
               >
                 <tr>
@@ -111,13 +207,23 @@
                     {{ res.netAmount | currency: "BRL" }}
                   </td>
                   <td class="text-center">{{ res.terminal }}</td>
-                  <td class="text-center">{{ res.administrationFee }}</td>
+                  <td class="text-center">
+                    {{ res.administrationFee | currency: "BRL" }}
+                  </td>
                   <td class="text-center">{{ res.channelCode }}</td>
                   <td class="text-center">{{ res.channel }}</td>
-                  <td class="text-center">{{ res.withdrawAmount }}</td>
-                  <td class="text-center">{{ res.minimumMDRAmmount }}</td>
-                  <td class="text-center">{{ res.mdrTaxAmount }}</td>
-                  <td class="text-center">{{ res.mdrFeeAmount }}</td>
+                  <td class="text-center">
+                    {{ res.withdrawAmount | currency: "BRL" }}
+                  </td>
+                  <td class="text-center">
+                    {{ res.minimumMDRAmmount | currency: "BRL" }}
+                  </td>
+                  <td class="text-center">
+                    {{ res.mdrTaxAmount | currency: "BRL" }}
+                  </td>
+                  <td class="text-center">
+                    {{ res.mdrFeeAmount | currency: "BRL" }}
+                  </td>
                   <td>
                     <span
                       class="text-white badge {{
@@ -144,5 +250,6 @@
         </div>
       </div>
     </div>
+    <app-footer></app-footer>
   </div>
 </div>

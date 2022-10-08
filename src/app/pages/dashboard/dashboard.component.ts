@@ -1,7 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { LancamentoContaLegado } from 'src/app/apis/json';
 import { LancamentoContaLegadoResponse } from 'src/app/apis/models/responses/lancamento-conta-legado.response';
-import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -10,28 +9,21 @@ import * as XLSX from 'xlsx';
   styles: [],
 })
 export class DashboardComponent implements OnInit {
-  fileName = 'Lançamentos-contas-legado.xlsx';
+  fileName = 'Lançamentos Contas Legado.xlsx';
   p: number = 1;
   maxVisibleItems: number = 20;
   response: LancamentoContaLegadoResponse = LancamentoContaLegado;
-  modalRef: BsModalRef | any;
-  
-  constructor(private readonly modalService: BsModalService) {}
 
-  key: string = 'descricao';
+  constructor() {}
+
+  key: string = 'cardBrand';
   reverse: boolean = false;
   sort(key: any): void {
     this.key = key;
     this.reverse = !this.reverse;
   }
 
-  ngOnInit(): void {
-    console.log(this.response);
-  }
-
-  abrirModal(template: TemplateRef<HTMLDivElement>, tamanho: string): void {
-    this.modalRef = this.modalService.show(template, { class: tamanho });
-  }
+  ngOnInit(): void {}
 
   exportexcel(): void {
     let element = document.getElementById('table-lancamento-contas-legado');

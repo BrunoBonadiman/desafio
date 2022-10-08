@@ -91,7 +91,11 @@
       </div>
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h5 class="m-0 font-weight-bold text-primary">Resultados</h5><small>Período: {{ response.summary.initialDate | date: "dd/MM/yyyy"  }} - {{ response.summary.finalDate | date: "dd/MM/yyyy"  }}</small>
+          <h5 class="m-0 font-weight-bold text-primary">Resultados</h5>
+          <small
+            >Período: {{ response.summary.initialDate | date: "dd/MM/yyyy" }} -
+            {{ response.summary.finalDate | date: "dd/MM/yyyy" }}</small
+          >
         </div>
         <div class="row mt-4 ml-1">
           <div class="col">

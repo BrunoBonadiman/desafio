@@ -11,7 +11,7 @@ import * as XLSX from 'xlsx';
 export class DashboardComponent implements OnInit {
   fileName = 'Lançamentos Contas Legado.xlsx';
   p: number = 1;
-  maxVisibleItems: number = 20;
+  maxVisibleItems: number = 25;
   response: LancamentoContaLegadoResponse = LancamentoContaLegado;
 
   constructor() {}

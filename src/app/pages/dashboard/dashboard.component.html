@@ -10,15 +10,15 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div
-                    class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                    class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2"
                   >
-                    Valor Total
+                    Valor Líquido Total
                   </div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    {{ response.summary.totalAmount | currency: "BRL" }}
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">
+                    {{ response.summary.totalNetAmount | currency: "BRL" }}
                   </div>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto mr-3">
                   <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                 </div>
               </div>
@@ -31,15 +31,15 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div
-                    class="text-xs font-weight-bold text-success text-uppercase mb-1"
+                    class="text-xs font-weight-bold text-success text-uppercase mb-1 ml-2"
                   >
-                    Valor Líquido Total
+                    Valor Total
                   </div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    {{ response.summary.totalNetAmount | currency: "BRL" }}
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">
+                    {{ response.summary.totalAmount | currency: "BRL" }}
                   </div>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto mr-3">
                   <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                 </div>
               </div>
@@ -52,15 +52,15 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div
-                    class="text-xs font-weight-bold text-info text-uppercase mb-1"
+                    class="text-xs font-weight-bold text-info text-uppercase mb-1 ml-2"
                   >
                     Valor Médio Total
                   </div>
-                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ml-2">
                     {{ response.summary.totalAverageAmount | currency: "BRL" }}
                   </div>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto mr-3">
                   <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                 </div>
               </div>
@@ -73,15 +73,15 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div
-                    class="text-xs font-weight-bold text-dark text-uppercase mb-1"
+                    class="text-xs font-weight-bold text-dark text-uppercase mb-1 ml-2"
                   >
                     Quantidade Total de Registros
                   </div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">
                     {{ response.summary.totalQuantity }}
                   </div>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto mr-3">
                   <i class="fas fa-bars fa-2x text-gray-300"></i>
                 </div>
               </div>
@@ -108,7 +108,7 @@
         <div class="card-body">
           <div class="table-responsive">
             <table
-              class="table table-hover"
+              class="table table-bordered table-hover"
               width="100%"
               cellspacing="0"
               [id]="'table-lancamento-contas-legado'"

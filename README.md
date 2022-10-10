@@ -1,7 +1,7 @@
 # Desafio Cielo
 
 O projeto foi criado utilizando a versão 13.1.0 global do Angular.
-O projeto consiste em um dashboard analítico com informações de lançamentos de contas do periodo de 26/05/2021 à 26/05/2021. Os dados são exibidos todos em uma tabela com possibilidade de exportar tais dados para uma planilha de excel, dando mais autonomia para que o usuário possa manipular os dados.
+O projeto consiste em um dashboard analítico com informações de lançamentos de contas do periodo de 26/05/2021 à 26/05/2021. Os dados são exibidos todos em uma tabela com possibilidade de exportar tais dados para uma planilha de excel, dando mais autonomia para que o usuário possa manipula-los.
 
 ## Instruções para rodar o projeto
 

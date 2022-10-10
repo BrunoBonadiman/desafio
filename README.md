@@ -1,14 +1,17 @@
 # Desafio Cielo
 
 O projeto foi criado utilizando a versão 13.1.0 global do Angular.
-O projeto consiste em um dashboard analítico com informações de lançamentos de contas do périodo de 26/05/2021 à 26/05/2021. Os dados são exibidos todos em uma tabela com possibilidade de exportar tais dados para uma planilha de excel, dando mais autonomia para que o usuário possa manipular os dados.
+O projeto consiste em um dashboard analítico com informações de lançamentos de contas do periodo de 26/05/2021 à 26/05/2021. Os dados são exibidos todos em uma tabela com possibilidade de exportar tais dados para uma planilha de excel, dando mais autonomia para que o usuário possa manipular os dados.
 
 ## Instruções para rodar o projeto
 
-Passo 1:
-Rode o comando `npm i` ou `npm i --force`, ambos irão instalar as dependências do projeto.
+Passo 1: É necessário ter instalado na máquina o Angular CLI nas versões 10 em diante e ter instalado também o NodeJs na versão compatível com o Angular instalado na máquina.
+Conforme mostra a tabela disponibilizada aqui: `https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3`
 
 Passo 2:
+Rode o comando `npm i` ou `npm i --force`, ambos irão instalar as dependências do projeto.
+
+Passo 3:
 Rode o comando `ng server` ou `ng s -o`, ambos os camandos irão compilar todos os pacotes e abrir o projeto no seguinte caminho `http://localhost:4200/dashboard`, porem o segundo comando `ng s -o` irá abrir o projeto direto no navegador sem a necessidade de uma ação manual.
 
 ## Arquitetura
